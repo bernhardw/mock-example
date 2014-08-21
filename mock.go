@@ -7,9 +7,9 @@ import (
 	"github.com/ongoingio/mock/service"
 )
 
-// GetRepos gets the repos from the service.
-func GetRepos() []service.Repo {
-	repos, err := service.Fetch()
+// GetRepos fetches the repositories via the service (interface).
+func GetRepos(s service.Servicer) []service.Repo {
+	repos, err := s.Fetch()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -17,7 +17,8 @@ func GetRepos() []service.Repo {
 }
 
 func main() {
-	repos := GetRepos()
+	service := &service.Service{}
+	repos := GetRepos(service)
 	for _, repo := range repos {
 		fmt.Printf("%s - %s\n", repo.Name, repo.Description)
 	}

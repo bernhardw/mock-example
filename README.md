@@ -10,4 +10,8 @@ This repository shows a simple example of the solution we ended up with.
 
 ## The Example
 
-The example gets all public repositories from Ongoing.io and prints them to the console. To fetch the repositories from Github, we will use the `service` package that we want to mock when testing the `GetRepos()` function in `mock.go`.
+The example gets all public repositories from Ongoing.io and prints them to the console. To fetch the repositories from Github, we use the `service` package that we want to mock when testing the `GetRepos()` function in `mock.go`.
+
+## TODO
+
+* Make GetRepos() more useful. Maybe trim the description around 40 chars etc.

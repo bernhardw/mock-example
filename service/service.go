@@ -8,6 +8,14 @@ import (
 
 const url = "https://api.github.com/orgs/ongoingio/repos"
 
+// Servicer defines an interface to be implemented by objects to fetch repositories.
+type Servicer interface {
+	Fetch() ([]Repo, error)
+}
+
+// Service serves as a service type.
+type Service struct{}
+
 // The Repo type represents a single repository on Github.
 type Repo struct {
 	Name        string `json:"name"`
@@ -15,7 +23,7 @@ type Repo struct {
 }
 
 // Fetch retrieves all repositories from an organization and returns them as a slice of Repo.
-func Fetch() ([]Repo, error) {
+func (service *Service) Fetch() ([]Repo, error) {
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
